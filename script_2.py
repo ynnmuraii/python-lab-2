@@ -24,14 +24,14 @@ def get_rel_paths2(class_name: str) -> list:
 
 
 def replace_images(class_name: str) -> list:
-    
+
     rel_path = os.path.relpath('dataset2')
     class_path = os.path.join(rel_path, class_name)
     image_names = os.listdir(class_path)
     image_rel_paths = list(
         map(lambda name: os.path.join(class_path, name), image_names))
-    new_rel_paths = list(
-        map(lambda name: os.path.join(rel_path, f'{class_name}_{name}'), image_names))
+    new_rel_paths = list(map(lambda name: os.path.join(
+        rel_path, f'{class_name}_{name}'), image_names))
     for old_name, new_name in zip(image_rel_paths, new_rel_paths):
         os.replace(old_name, new_name)
 
@@ -62,7 +62,7 @@ def main() -> None:
     leopard_rel_paths = get_rel_paths2(class1)
     tiger_full_paths = get_full_paths2(class2)
     tiger_rel_paths = get_rel_paths2(class2)
-    
+
     with open('paths2.csv', 'w') as csv_file:
         writer = csv.writer(csv_file, delimiter=',', lineterminator='\r')
         for full_path, rel_path in zip(leopard_full_paths, leopard_rel_paths):

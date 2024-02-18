@@ -28,12 +28,13 @@ def main() -> None:
     for old_name, new_name in zip(old_rel_paths, new_rel_paths):
         os.replace(old_name, new_name)
 
-    new_full_paths = list(
-        map(lambda name: os.path.join(os.path.abspath('dataset3'), name), new_names))
+    new_full_paths = list(map(lambda name: os.path.join(
+        os.path.abspath('dataset3'), name), new_names))
 
     with open('paths3.csv', 'w') as csv_file:
         writer = csv.writer(csv_file, delimiter=',', lineterminator='\r')
-        for full_path, rel_path, old_rel_path in zip(new_full_paths, new_rel_paths, old_rel_paths):
+        for full_path, rel_path, old_rel_path in zip(
+                new_full_paths, new_rel_paths, old_rel_paths):
             if 'leopard' in old_rel_path:
                 class_name = 'leopard'
             else:
